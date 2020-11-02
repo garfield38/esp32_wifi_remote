@@ -3,7 +3,8 @@
 #include <ESPAsyncWebServer.h>  // https://github.com/me-no-dev/ESPAsyncWebServer
 #include <SPIFFS.h>
 #include <ArduinoJson.h>        // https://arduinojson.org/v6/doc/installation/
-#include <IRremote.h>           // https://www.arduino.cc/reference/en/libraries/irremote/
+#include <IRremoteESP8266.h>
+#include <IRsend.h>
 #include "security.h"
 #include "IRCodes.h"
 
@@ -13,8 +14,9 @@ String request;
 DynamicJsonDocument doc(200);
 AsyncWebServer server(80);
 
-// IR Remote 
-IRsend IrSender;
+// IR Remote
+const uint16_t IR_SEND_PIN = 4;  // ESP8266 GPIO pin to use. Recommended: 4 (D2).
+IRsend irsend(IR_SEND_PIN);  // Set the GPIO to be used to sending the message.
 bool IRpending = false;
 unsigned long IRcmd = 0x0;
 unsigned char IRlen = 0x0;
@@ -244,7 +246,8 @@ void loop()
   // although I tested both of them and they both worked fine.
   if(IRpending)
   {
-    IrSender.sendSAMSUNG(IRcmd, IRlen);
+    // IrSender.sendSAMSUNG(IRcmd, IRlen);
+    irsend.sendSony(IRcmd, 12, 2);
     Serial.print("0x");
     Serial.println(IRcmd, HEX);
     IRcmd = 0;
