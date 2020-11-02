@@ -46,4 +46,48 @@ const Samsung_Remote_t RemoteCodes =
   .btnChEnter   = 0xE0E0F20D,
 };
 
+// Define Sony TV IR remote structure
+typedef struct Sony_Remote_t {
+  unsigned int  codeLen;
+  unsigned long btnOnOff;
+  unsigned long btn123;
+  unsigned long btnExtra;
+  unsigned long btnUp;
+  unsigned long btnDown;
+  unsigned long btnLeft;
+  unsigned long btnRight;
+  unsigned long btnOK;
+  unsigned long btnReturn;
+  unsigned long btnHome;
+  unsigned long btnPlayPause;
+  unsigned long btnVolUp;
+  unsigned long btnVolDown;
+  unsigned long btnVolEnter;
+  unsigned long btnChUp;
+  unsigned long btnChDown;
+  unsigned long btnChEnter;
+} Sony_Remote_t;
+
+const Sony_Remote_t RemoteCodes =
+{
+  .codeLen      = 12,
+  .btnOnOff     = 0xA90,
+  .btn123       = 0xE0E0807f,
+  .btnExtra     = 0xE0E0738C,
+  .btnUp        = 0xE0E006F9,
+  .btnDown      = 0xE0E08679,
+  .btnLeft      = 0xE0E0A659,
+  .btnRight     = 0xE0E046B9,
+  .btnOK        = 0xE0E016E9,
+  .btnReturn    = 0xE0E01AE5,
+  .btnHome      = 0xE0E09E61,
+  .btnPlayPause = 0xE0E09D62,
+  .btnVolUp     = 0x490,
+  .btnVolDown   = 0xC90,
+  .btnVolEnter  = 0x290,
+  .btnChUp      = 0x90,
+  .btnChDown    = 0x890,
+  .btnChEnter   = 0xDD0,
+};
+
 #endif
